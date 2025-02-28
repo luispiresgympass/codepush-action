@@ -1,15 +1,16 @@
 # GitHub Actions for Firebase
 
-This Action for [appcenter codepush](https://github.com/microsoft/appcenter-cli) enables arbitrary actions with the `appcenter` command-line client.
+This Action for [codepush-standalone](https://github.com/microsoft/code-push-server/tree/main/cli) enables arbitrary actions with the `codepush-standalone` command-line client.
 
 ## Inputs
 
-* `args` - **Required**. This is the arguments you want to use for the `appcenter` cli
+* `args` - **Required**. This is the arguments you want to use for the `codepush-standalone` cli
 
 
 ## Environment variables
 
-* `APPCENTER_ACCESS_TOKEN` - **Required**. The token to use for authentication. This token can be aquired through the `appcenter dashboard`.
+* `ACCESS_TOKEN` - **Required**. The token to use for authentication. This token can be aquired through the `cli`.
+* `CODEPUSH_SERVER_URL` - **Required**. The URL for the Self hosted Server.
 
 ## Example
 
@@ -32,11 +33,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Deploy to Codepush
-        uses: NishanthShankar/codepush-action@master
+        uses: luispiresgympass/codepush-action@master
         with:
           args: release-react -d Production
         env:
-          APPCENTER_ACCESS_TOKEN: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          CODEPUSH_SERVER_URL: ${{ secrets.CODEPUSH_SERVER_URL }}
 ```
 
 
